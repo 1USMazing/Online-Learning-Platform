@@ -1,0 +1,148 @@
+﻿@model ProiectMDS.Models.Task
+
+@{
+	ViewBag.Title = "Show";
+}
+
+<h2>@TempData["status"]</h2>
+<h2>@TempData["editcourse"]</h2>
+<h2>@TempData["comm"]</h2>
+
+<br />
+<br />
+<a class="btn btn-info" href="/Course/New/@Model.ProjectId">Adaugă alt curs în cadrul materiei</a>
+<br />
+<br />
+<div class="panel panel-default">
+	<div class="panel-heading">@Model.Title</div>
+    <div class="panel-body">
+        Descriere curs: <strong>@Model.Description</strong>
+        <br />
+        @if (Model.StartDate == null)
+        {
+            @:Start date: Lucrul la acest curs nu a inceput.
+        }
+        else
+        {
+            @:Start date: <span class="label label-success">@Model.StartDate</span>
+        }
+        <br />
+        Deadline: <span class="label label-success">@Model.DueDate</span>
+        <br />
+        Numele proiectului din care face parte: <i class="glyphicon glyphicon-globe"></i> @Model.Project.ProjectName
+        <br />
+        Status curs: <strong>@Model.Status</strong>
+
+        <br />
+
+        <i class="glyphicon glyphicon-list-alt"></i> Membrii participanți la curs:
+        <p>
+            @foreach (string username in ViewBag.membrii)
+            {
+                <span>@username.ToString() | </span>
+            }
+
+        </p>
+
+
+
+        @if (ViewBag.afisareButoane == true && Model.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin)
+        {
+
+
+            <a class="btn btn-success pull-left" href="/Project/Show/@Model.ProjectId">Înapoi la proiect</a>
+            <a class="btn btn-success pull-left" href="/Course/Edit/@Model.Id">Modifică curs</a>
+            <a class="btn btn-success pull-left" href="/ApartineT/New/@Model.Id">Assign curs</a>
+            <a class="btn btn-success pull-left" href="/ApartineT/Remove/@Model.Id">Elimină membrii</a>
+
+
+            if (@Model.Status == "Not started")
+            {
+                <a class="btn btn-success pull-left" href="/Course/StartCourse/@Model.Id">Start curs</a>
+            }
+
+            else if (@Model.Status == "In Progress")
+            {
+                <a class="btn btn-success pull-left" href="/Course/FinishCourse/@Model.Id">Finish Course</a>
+            }
+            else if (@Model.Status == "In Progress - WARNING: DEADLINE HAS BEEN EXCEEDED!")
+            {
+                <a class="btn btn-success pull-left" href="/Course/FinishCourse/@Model.Id">Finish Course</a>
+            }
+
+            using (Html.BeginForm(actionName: "Delete", controllerName: "Task"))
+            {
+                @Html.Hidden("Id")
+                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                <button class="btn btn-danger pull-right" type="submit">Șterge Curs</button>
+            }
+
+
+            <div class="clearfix"></div>
+        }
+    </div>
+        
+</div>
+
+
+	<br />
+	@foreach (var comm in Model.Comments)
+	{
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div>
+                        <p>@comm.Content</p>
+                        <small class="pull-right">@comm.Date</small>
+                        <i class="glyphicon glyphicon-user"></i> <i>scris de</i> <strong> @comm.User.UserName </strong>
+                    </div>
+                    @if (comm.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin)
+                    {
+                        <div style="display: inline-block; float : left; margin-right: 15px">
+                            <a class="glyphicon glyphicon-pencil" href="/Comment/Edit/@comm.CommentId"></a>
+                        </div>
+                    <div style="display: inline-block; float : left">
+                        <form method="post" action="/Comment/Delete/@comm.CommentId">
+                            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                            <button class="glyphicon glyphicon-trash" style="border: none; background: transparent" type="submit"></button>
+                        </form>
+                    </div>
+                    }
+                </div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<hr />
+	}
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2">
+			</div>
+			<div class="col-md-8">
+				<div class="panel">
+					<form method="post" action="/Task/Show/@Model.Id">
+                        <div class="panel-body">
+                            <input type="hidden" name="CourseId" value="@Model.Id" />
+                            <label>Conținut comentariu</label>
+                            <br />
+                            <textarea class="form-control" name="Content"></textarea>
+                            @Html.ValidationMessage("Content", "", new { @class = "text-danger" })
+                            <br />
+                            <button class="btn btn-success " type="submit">Adaugă comentariu</button>
+                        </div>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+
+
+
+
+
+
+

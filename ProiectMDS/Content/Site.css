@@ -1,0 +1,180 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono&display=swap');
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #f5f6fa;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.navbar {
+    background-color: #dadada;
+    border: none;
+    box-shadow: 0 6px 12px #dadada;
+}
+
+    .navbar a {
+        color: #2c2c2c;
+    }
+
+        .navbar a:hover {
+            color: #5cb85c;
+        }
+
+.dropdown-item {
+    color: red;
+    width: 100%;
+    text-allign: left;
+    font-size: 13px;
+}
+
+.form-check-input {
+    display: none;
+}
+
+.multiselect-container.dropdown-menu {
+    width: 250px;
+}
+
+.front-box {
+    width: 28%;
+    height: 500px;
+    background-color: #2f2f2;
+    padding: 50px;
+    margin-left: 50px;
+    margin-top: 50px;
+    border-radius: 24px;
+    box-shadow: 0px 11px 11px 0px rgba(0,0,0,0.88);
+    opacity: 0.75;
+    -webkit-filter: brightness(100%);
+    -webkit-transition: all 0.5s ease;
+}
+
+    .front-box:hover  {
+        -webkit-filter: brightness(50%);
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        -ms-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+        box-shadow: none;  
+    }
+
+
+
+    .front-box i {
+        margin: 65% 0 0 10%;
+        width: 50%;
+        padding: 10px;
+        text-align: center;
+        font-size: 50px;
+        position: absolute;
+        color: #c68c53;
+    }
+
+footer {
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+    footer p {
+        margin-left: 10px;
+    }
+
+.wphome {
+    background-image: url("background.jpg");
+    margin: 0;
+}
+
+.boxes{
+    margin-top: 170px;
+
+}
+
+.front-box p {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    margin: auto;
+    font-family: 'Xanh Mono', monospace;
+}
+
+.front-box2 {
+    width: 100%;
+    height: auto;
+    background-color: #2f2f2;
+    padding: 50px;
+    margin-left: 50px;
+    margin-top: 98px;
+    border-radius: 24px;
+    box-shadow: 0px 11px 11px 0px rgba(0,0,0,0.88);
+    opacity: 0.9;
+    display: block;
+    color: black;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    -webkit-filter: brightness(100%);
+    -webkit-transition: all 0.5s ease;
+}
+
+    .front-box2:hover {
+        -webkit-filter: brightness(50%);
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        -ms-transition: all 0.5s ease;
+        text-decoration: none;
+        transition: all 0.5s ease;
+        box-shadow: none;
+    }
+
+.btn.btn-danger {
+    background-color: #353b48;
+    border-color: #353b48;
+}
+
+    .btn.btn-danger:hover {
+        background-color: #718093;
+        border-color: #718093;
+    }
+
+.btn.btn-success {
+    background-color: #e84118;
+    border-color: #e84118;
+    margin-right: 1.5px;
+}
+
+    .btn.btn-success:active {
+        background-color: #e84118;
+        border-color: #e84118;
+    }
+
+
+.btn.btn-success.butonash {
+    color: yellow;
+    
+}

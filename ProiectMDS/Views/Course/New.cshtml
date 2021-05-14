@@ -1,0 +1,38 @@
+﻿@model ProiectMDS.Models.Task
+
+
+<h2>Adăugare curs</h2>
+<form method="post" action="/Course/New">
+
+    @Html.Label("Title", "Nume curs")
+    <br />
+    @Html.TextBox("Title", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+
+    <br /><br />
+
+    @Html.Label("Description", "Descriere curs")
+    <br />
+    @Html.TextArea("Description", null, new { @class = "form-control" })
+    @Html.ValidationMessage("Description", null, new { @class = "text-danger" })
+
+    <br />
+
+
+    @Html.Label("DueDate", "Deadline")
+    <br />
+    @Html.TextBox("DueDate", "", new { @class = "form-control datepicker", @placeholder = "Introduceti data" })
+
+
+    @Html.ValidationMessage("DueDate", null, new { @class = "text-danger" })
+    <br /><br />
+
+
+
+    <input type="hidden" name="ProjectId" value="@Model.ProjectId" />
+
+    <button class="btn btn-sm btn-success" type="submit">Adaugă curs</button>
+
+</form>
+
+

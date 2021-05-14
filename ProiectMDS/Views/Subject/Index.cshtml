@@ -1,0 +1,23 @@
+﻿
+
+
+<h2>Listă materii</h2>
+
+<h2>@TempData["message"]</h2>
+
+@foreach (var project in ViewBag.Proiektzele)
+{
+    <p>@project.ProjectName</p>
+    <a class="btn btn-success butonash" href="/Subject/Show/@project.ProjectId">Afișare materie</a>
+
+
+
+    <br />
+
+    <hr />
+    <br />
+}
+<br />
+<a class="btn btn-info" href="/Subject/New">Adaugă o nouă materie</a>
+<br />
+

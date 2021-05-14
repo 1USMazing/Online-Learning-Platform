@@ -1,0 +1,31 @@
+﻿
+@{
+	ViewBag.Title = "Index";
+}
+<h1>@ViewBag.Message</h1>
+<h2>Cursuri</h2>
+
+<a class="btn btn-primary" href="/Subject/Index">Afisare Materii</a>
+
+<a class="btn btn-primary" href="/Course/New">Adauga curs</a>
+<br />
+
+@foreach (var course in ViewBag.Courses)
+{
+	<div class="panel panel-default">
+		<div class="panel-heading">@course.Title</div>
+		<div class="panel-body">
+			Continut curs: <strong>@course.Description</strong>
+			<br />
+			<span class="label label-success">@course.DueDate</span>
+			<br />
+			<i class="glyphicon glyphicon-globe"></i> @course.Project.ProjectName
+		</div>
+		<div class="panel-footer">
+			<a class=" btn btn-sm btn btn-success" href="/Course/Show/@course.Id">Afisare curs</a>
+		</div>
+	</div>
+}
+
+
+

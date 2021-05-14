@@ -1,0 +1,65 @@
+﻿@model ProiectMDS.Models.Project
+
+@{
+    ViewBag.Title = "Afișare materie";
+}
+
+					
+<h2>@ViewBag.Title</h2>
+<h2>@TempData["message"]</h2>
+<h2>@TempData["coursemessage"]</h2>
+
+<div class="panel panel-default">
+    
+    <div class="panel-heading">Nume materie: @Model.ProjectName</div>
+
+    <div class="panel-body">
+        Instructorul acestei materii este: <strong>@ViewBag.Owner</strong>
+        <br />
+        <br />
+        <i class="glyphicon glyphicon-user"></i> Listă cursuri:
+        @foreach (var course in Model.Tasks)
+        {
+            <a href=" /Course/Show/@course.Id"> @course.Title </a>
+            <br />
+
+        }
+
+        <br />
+
+
+        <i class="glyphicon glyphicon-list-alt"></i> studenții ce studiază materie:
+       <p>@foreach (var user in ViewBag.membrii)
+        {
+              <span>@user.UserName.ToString() | </span> 
+        }
+
+        </p>
+        
+        <br />
+        <br />
+
+
+        @using (Html.BeginForm(actionName: "Delete", controllerName: "Project", method: FormMethod.Post, routeValues: new { id = @Model.ProjectId }))
+        {
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn btn-danger pull-right" type="submit">Șterge materia</button>
+        }
+        <a class="btn btn-success" href="/Subject/Index/">Afișare listă materii</a>
+
+        @if (User.IsInRole("Organizator") || User.IsInRole("Admin"))
+        {
+            <a class="btn btn-success" href="/Course/New/@Model.ProjectId">Adaugă curs</a>
+            <a class="btn btn-success" href="/Subject/Edit/@Model.ProjectId">Editare materie</a>
+            <a class="btn btn-success" href="/Apartine/New/@Model.ProjectId">Adaugă studenți</a>
+            <a class="btn btn-success" href="/Apartine/Remove/@Model.ProjectId">Elimină studenți</a>
+        }
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+
+<br />
+<hr />
+<br />
+
