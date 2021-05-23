@@ -5,12 +5,12 @@
 
 <h2>@ViewBag.Title</h2>
 
-<form method="post" action="/Subject/Edit/@ViewBag.Project.ProjectId">
+<form method="post" action="/Subject/Edit/@ViewBag.Subject.SubjectId">
 
 	@Html.HttpMethodOverride(HttpVerbs.Put)
 
 	<label>Nume materie</label>
-	<br /> <input type="text" name="ProjectName" value="@ViewBag.Project.ProjectName" />
+	<br /> <input type="text" name="SubjectName" value="@ViewBag.Subject.SubjectName" />
 	<br /><br />
 
 	<button class="btn btn-success" type="submit">Modifica materia</button>

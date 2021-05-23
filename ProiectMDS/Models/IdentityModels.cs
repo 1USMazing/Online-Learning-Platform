@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using ProiectMDS.Models;
-using Task = ProiectMDS.Models.Task;
+using Task = ProiectMDS.Models.Course;
 
 namespace ProiectMDS.Models
 {
@@ -32,8 +32,8 @@ namespace ProiectMDS.Models
 			Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, ProiectMDS.Migrations.Configuration>("DefaultConnection"));
 		}
 
-		public DbSet<Task> Tasks { get; set; }
-		public DbSet<Project> Projects { get; set; }
+		public DbSet<Course> Courses { get; set; }
+		public DbSet<Subject> Subjects { get; set; }
 		public DbSet<Comment> Comments { get; set; }
         public DbSet<Apartine> Apartines { get; set; }
         public DbSet<ApartineT> ApartineTs { get; set; }

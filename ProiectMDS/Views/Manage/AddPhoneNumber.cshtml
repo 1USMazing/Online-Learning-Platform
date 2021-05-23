@@ -2,28 +2,58 @@
 @{
     ViewBag.Title = "Phone Number";
 }
+<style>
+    body {
+        background-image: url("/backgroundLogin1.jpg");
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        backgroud-repeat: no-repeat;
+        background-size: cover;
+    }
+    .loginButton {
+        background-color: white;
+        border: 2px solid #f44336;
+        color: black;
+        padding: 10px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 3px 1px;
+        transition-duration: 0.3s;
+        cursor: pointer;
+    }
 
-<h2>@ViewBag.Title.</h2>
+    .loginButton:hover {
+        background-color: #f44336;
+        color: white;
+    }
+</style>
 
-@using (Html.BeginForm("AddPhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Add a phone number</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Number, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Number, new { @class = "form-control" })
+<body>
+    <h2>@ViewBag.Title.</h2>
+
+    @using (Html.BeginForm("AddPhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Add a phone number</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Number, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Number, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Submit" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="loginButton">Submit</button>
+            </div>
         </div>
-    </div>
-}
+    }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</body>

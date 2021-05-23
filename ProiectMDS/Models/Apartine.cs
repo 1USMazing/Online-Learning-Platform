@@ -14,7 +14,7 @@ namespace ProiectMDS.Models
         public int idEchipa { get; set; } 
 
         [Required]
-        public int ProjectId { get; set; }
+        public int SubjectId { get; set; }
 
 
         public string Email { get; set; }
@@ -28,7 +28,7 @@ namespace ProiectMDS.Models
 
         virtual public ICollection<ApplicationUser> Userz { get; set; }
 
-        public virtual Project project { get; set; }
+        public virtual Subject subject { get; set; }
         public virtual ApplicationUser user { get; set; }
     }
 }

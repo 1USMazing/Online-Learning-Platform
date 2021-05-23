@@ -111,15 +111,15 @@ namespace ProiectMDS.Controllers
             var UserManager = new UserManager<ApplicationUser>(new
            UserStore<ApplicationUser>(context));
             var user = UserManager.Users.FirstOrDefault(u => u.Id == id);
-            var projects = db.Projects.Where(p => p.UserId == id);
-            foreach (var project in projects)
+            var subjects = db.Subjects.Where(p => p.UserId == id);
+            foreach (var subject in subjects)
             {
-                db.Projects.Remove(project);
+                db.Subjects.Remove(subject);
             }
-            var tasks = db.Tasks.Where(t => t.AssignTo == id);
-            foreach (var task in tasks)
+            var courses = db.Courses.Where(t => t.AssignTo == id);
+            foreach (var course in courses)
             {
-                db.Tasks.Remove(task);
+                db.Courses.Remove(course);
             }
 
             db.SaveChanges();

@@ -11,7 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using ProiectMDS.Models;
-using Task = ProiectMDS.Models.Task;
+using Task = ProiectMDS.Models.Course;
 
 namespace ProiectMDS
 {

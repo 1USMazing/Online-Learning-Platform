@@ -57,6 +57,7 @@ namespace ProiectMDS
 				role.Name = "Membru";
 				roleManager.Create(role);
 			}
+            
 		}
 	}
 }

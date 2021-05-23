@@ -18,21 +18,21 @@ namespace ProiectMDS.Controllers
         public ActionResult Index(string id)
         {
 
-            /*List<int> Iduri = db.Apartines.Where(a => a.MembruId == id).Select(a => a.ProjectId).ToList(); // id-urile proiectelor unde apartin
-            var proiecte = db.Projects.Where(p => Iduri.Contains(p.ProjectId));
-            ViewBag.Projects = proiecte;
+            /*List<int> Iduri = db.Apartines.Where(a => a.MembruId == id).Select(a => a.SubjectId).ToList(); // id-urile proiectelor unde apartin
+            var proiecte = db.Subjects.Where(p => Iduri.Contains(p.SubjectId));
+            ViewBag.Subjects = proiecte;
             ViewBag.MembruId = id;*/
 
             var proiecteleLui = User.Identity.GetUserId();
 
-            var projects = from proj in db.Apartines
+            var subjects = from proj in db.Apartines
                            where proj.MembruId == proiecteleLui
-                           select proj.ProjectId;
+                           select proj.SubjectId;
 
-            var lengthproj = new List<int>(projects);
+            var lengthproj = new List<int>(subjects);
 
-            var numeProiekte = from projj in db.Projects
-                               where lengthproj.Contains(projj.ProjectId)
+            var numeProiekte = from projj in db.Subjects
+                               where lengthproj.Contains(projj.SubjectId)
                                select projj;
 
 
@@ -46,20 +46,20 @@ namespace ProiectMDS.Controllers
         public ActionResult New(int? id)
         {
 
-            var owner = (from own in db.Projects
-                        where own.ProjectId == id
+            var owner = (from own in db.Subjects
+                        where own.SubjectId == id
                         select own.UserId).SingleOrDefault();
 
             if (owner == User.Identity.GetUserId() || User.IsInRole("Admin"))
             {
                 var selectList = new List<SelectListItem>();
 
-                var inProject = from mem in db.Apartines
-                                where mem.ProjectId == id
+                var inSubject = from mem in db.Apartines
+                                where mem.SubjectId == id
                                 select mem.MembruId;
 
                 var users = from user in db.Users
-                            where !(inProject.Contains(user.Id))
+                            where !(inSubject.Contains(user.Id))
                             select user;
 
                 foreach (var usr in users)
@@ -84,7 +84,7 @@ namespace ProiectMDS.Controllers
                //  apartine.Userz = new Collection<ApplicationUser>();
 
                 apartine.Usr = selectList;
-                apartine.ProjectId = Convert.ToInt32(id);
+                apartine.SubjectId = Convert.ToInt32(id);
 
                     
                 return View(apartine);
@@ -92,7 +92,7 @@ namespace ProiectMDS.Controllers
             else
             {
                 TempData["message"] = "Nu aveți dreptul să faceți modificări asupra unui proiect ce nu vă aparține!";
-                return RedirectToAction("../Project/Show/" + id);
+                return RedirectToAction("../Subject/Show/" + id);
 
             }
 
@@ -106,23 +106,23 @@ namespace ProiectMDS.Controllers
             {
                 if (true)
                 {
-                    var id = apartine.ProjectId;
+                    var id = apartine.SubjectId;
 
                     // apartine.Userz = new Collection<ApplicationUser>();
                     foreach (var selectedUser in apartine.SelectedUsers)
                     {
                         apartine.MembruId = selectedUser;
-                        apartine.ProjectId = id;
+                        apartine.SubjectId = id;
                         db.Apartines.Add(apartine);
                         db.SaveChanges();
                     }
                     db.SaveChanges();
                     TempData["message"] = "Membrul a fost adăugat!";
-                    return RedirectToAction("../Project/Show/" + id);
+                    return RedirectToAction("../Subject/Show/" + id);
                 }
                 else
                 {
-                    return RedirectToAction("../Project/Index/" );
+                    return RedirectToAction("../Subject/Index/" );
                 }    
             }
 
@@ -137,20 +137,20 @@ namespace ProiectMDS.Controllers
         public ActionResult Remove(int? id)
         {
 
-            var owner = (from own in db.Projects
-                         where own.ProjectId == id
+            var owner = (from own in db.Subjects
+                         where own.SubjectId == id
                          select own.UserId).SingleOrDefault();
 
             if (owner == User.Identity.GetUserId() || User.IsInRole("Admin"))
             {
                 var selectList = new List<SelectListItem>();
 
-                var inProject = from mem in db.Apartines
-                                where mem.ProjectId == id && mem.MembruId != owner
+                var inSubject = from mem in db.Apartines
+                                where mem.SubjectId == id && mem.MembruId != owner
                                 select mem.MembruId;
 
                 var users = from user in db.Users
-                            where (inProject.Contains(user.Id))
+                            where (inSubject.Contains(user.Id))
                             select user;
 
                 foreach (var usr in users)
@@ -175,7 +175,7 @@ namespace ProiectMDS.Controllers
                 //  apartine.Userz = new Collection<ApplicationUser>();
 
                 apartine.Usr = selectList;
-                apartine.ProjectId = Convert.ToInt32(id);
+                apartine.SubjectId = Convert.ToInt32(id);
 
 
                 return View(apartine);
@@ -183,7 +183,7 @@ namespace ProiectMDS.Controllers
             else
             {
                 TempData["message"] = "Nu aveți dreptul să faceți modificări asupra unui proiect ce nu vă aparține!";
-                return RedirectToAction("../Project/Show/" + id);
+                return RedirectToAction("../Subject/Show/" + id);
 
             }
 
@@ -197,14 +197,14 @@ namespace ProiectMDS.Controllers
             {
                 if (true)
                 {
-                    var id = apartine.ProjectId;
+                    var id = apartine.SubjectId;
                     var ok = 1;
 
                     // apartine.Userz = new Collection<ApplicationUser>();
                     foreach (var selectedUser in apartine.SelectedUsers)
                     {
                         var fordelete = (from dlt in db.Apartines
-                                        where dlt.MembruId == selectedUser && dlt.ProjectId == id
+                                        where dlt.MembruId == selectedUser && dlt.SubjectId == id
                                         select dlt.idEchipa).SingleOrDefault(); 
 
                         
@@ -216,11 +216,11 @@ namespace ProiectMDS.Controllers
                     }
                     db.SaveChanges();
                     TempData["message"] = "Membrul a fost eliminat!";
-                    return RedirectToAction("../Project/Show/" + id);
+                    return RedirectToAction("../Subject/Show/" + id);
                 }
                 else
                 {
-                    return RedirectToAction("../Project/Index/");
+                    return RedirectToAction("../Subject/Index/");
                 }
             }
 

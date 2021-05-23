@@ -28,12 +28,12 @@ namespace ProiectMDS.Controllers
             {
                 db.Comments.Remove(comm);
                 db.SaveChanges();
-                return Redirect("/Task/Show/" + comm.TaskId);
+                return Redirect("/Course/Show/" + comm.CourseId);
             }
             else
             {
                 TempData["comm"] = "Nu aveți dreptul să faceți modificări!";
-                return RedirectToAction("../Task/Show/" + comm.TaskId);
+                return RedirectToAction("../Course/Show/" + comm.CourseId);
             }
         }
 
@@ -50,7 +50,7 @@ namespace ProiectMDS.Controllers
             else
             {
                 TempData["comm"] = "Nu aveți dreptul să faceți modificări!";
-                return RedirectToAction("../Task/Show/" + comm.TaskId);
+                return RedirectToAction("../Course/Show/" + comm.CourseId);
             }
         }
 
@@ -69,12 +69,12 @@ namespace ProiectMDS.Controllers
                         comm.Content = requestComment.Content;
                         db.SaveChanges();
                     }
-                    return Redirect("/Task/Show/" + comm.TaskId);
+                    return Redirect("/Course/Show/" + comm.CourseId);
                 }
                 else
                 {
                     TempData["comm"] = "Nu aveți dreptul să faceți modificări!";
-                    return RedirectToAction("../Task/Show/" + comm.TaskId);
+                    return RedirectToAction("../Course/Show/" + comm.CourseId);
                 }
             }
 
