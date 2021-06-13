@@ -4,15 +4,13 @@
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
     <h2>Adăugare membru</h2>
 
     <form method="post" action="/Apartine/New">
 
 
 
-    <input type="hidden" name="ProjectId" value="@Model.ProjectId" />
+    <input type="hidden" name="SubjectId" value="@Model.SubjectId" />
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
@@ -89,5 +87,4 @@
             <br />
             <button class="btn btn-sm btn-success" type="submit">Alege membru</button>*@
 </form>
-
 

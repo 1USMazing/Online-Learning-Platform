@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="AnswerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnswerText" Type="varchar(max)" />
+          <Property Name="QuestionID" Type="int" />
+        </EntityType>
+        <EntityType Name="Choices">
+          <Key>
+            <PropertyRef Name="ChoiceID" />
+          </Key>
+          <Property Name="ChoiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChoiceText" Type="varchar(max)" />
+          <Property Name="QuestionID" Type="int" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionText" Type="varchar(max)" />
+          <Property Name="QuizID" Type="int" />
+        </EntityType>
+        <EntityType Name="Quiz">
+          <Key>
+            <PropertyRef Name="QuizID" />
+          </Key>
+          <Property Name="QuizID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuizName" Type="varchar" MaxLength="80" />
+        </EntityType>
+        <EntityContainer Name="DBModelStoreContainer">
+          <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Choices" EntityType="Self.Choices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Quiz" EntityType="Self.Quiz" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="AnswerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnswerText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Choice">
+          <Key>
+            <PropertyRef Name="ChoiceID" />
+          </Key>
+          <Property Name="ChoiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChoiceText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="QuizID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Quiz">
+          <Key>
+            <PropertyRef Name="QuizID" />
+          </Key>
+          <Property Name="QuizID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuizName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="DBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Answers" EntityType="Self.Answer" />
+          <EntitySet Name="Choices" EntityType="Self.Choice" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="Quizs" EntityType="Self.Quiz" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="DBEntities1">
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="DBModel.Answer">
+              <MappingFragment StoreEntitySet="Answers">
+                <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+                <ScalarProperty Name="AnswerText" ColumnName="AnswerText" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Choices">
+            <EntityTypeMapping TypeName="DBModel.Choice">
+              <MappingFragment StoreEntitySet="Choices">
+                <ScalarProperty Name="ChoiceID" ColumnName="ChoiceID" />
+                <ScalarProperty Name="ChoiceText" ColumnName="ChoiceText" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="DBModel.Question">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="QuizID" ColumnName="QuizID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quizs">
+            <EntityTypeMapping TypeName="DBModel.Quiz">
+              <MappingFragment StoreEntitySet="Quiz">
+                <ScalarProperty Name="QuizID" ColumnName="QuizID" />
+                <ScalarProperty Name="QuizName" ColumnName="QuizName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,4 +1,4 @@
-﻿@model ProiectMDS.Models.Project
+﻿@model ProiectMDS.Models.Subject
 
 @{
     ViewBag.Title = "Afișare materie";
@@ -11,14 +11,14 @@
 
 <div class="panel panel-default">
     
-    <div class="panel-heading">Nume materie: @Model.ProjectName</div>
+    <div class="panel-heading">Nume materie: @Model.SubjectName</div>
 
     <div class="panel-body">
         Instructorul acestei materii este: <strong>@ViewBag.Owner</strong>
         <br />
         <br />
         <i class="glyphicon glyphicon-user"></i> Listă cursuri:
-        @foreach (var course in Model.Tasks)
+        @foreach (var course in Model.Courses)
         {
             <a href=" /Course/Show/@course.Id"> @course.Title </a>
             <br />
@@ -40,7 +40,7 @@
         <br />
 
 
-        @using (Html.BeginForm(actionName: "Delete", controllerName: "Project", method: FormMethod.Post, routeValues: new { id = @Model.ProjectId }))
+        @using (Html.BeginForm(actionName: "Delete", controllerName: "Project", method: FormMethod.Post, routeValues: new { id = @Model.SubjectId }))
         {
             @Html.HttpMethodOverride(HttpVerbs.Delete)
             <button class="btn btn-danger pull-right" type="submit">Șterge materia</button>
@@ -49,10 +49,10 @@
 
         @if (User.IsInRole("Organizator") || User.IsInRole("Admin"))
         {
-            <a class="btn btn-success" href="/Course/New/@Model.ProjectId">Adaugă curs</a>
-            <a class="btn btn-success" href="/Subject/Edit/@Model.ProjectId">Editare materie</a>
-            <a class="btn btn-success" href="/Apartine/New/@Model.ProjectId">Adaugă studenți</a>
-            <a class="btn btn-success" href="/Apartine/Remove/@Model.ProjectId">Elimină studenți</a>
+            <a class="btn btn-success" href="/Course/New/@Model.SubjectId">Adaugă curs</a>
+            <a class="btn btn-success" href="/Subject/Edit/@Model.SubjectId">Editare materie</a>
+            <a class="btn btn-success" href="/Apartine/New/@Model.SubjectId">Adaugă studenți</a>
+            <a class="btn btn-success" href="/Apartine/Remove/@Model.SubjectId">Elimină studenți</a>
         }
         <div class="clearfix"></div>
     </div>

@@ -1,4 +1,4 @@
-﻿@model ProiectMDS.Models.Task
+﻿@model ProiectMDS.Models.Course
 
 @{
 	ViewBag.Title = "Show";
@@ -10,7 +10,7 @@
 
 <br />
 <br />
-<a class="btn btn-info" href="/Course/New/@Model.ProjectId">Adaugă alt curs în cadrul materiei</a>
+<a class="btn btn-info" href="/Course/New/@Model.SubjectId">Adaugă alt curs în cadrul materiei</a>
 <br />
 <br />
 <div class="panel panel-default">
@@ -29,7 +29,7 @@
         <br />
         Deadline: <span class="label label-success">@Model.DueDate</span>
         <br />
-        Numele proiectului din care face parte: <i class="glyphicon glyphicon-globe"></i> @Model.Project.ProjectName
+        Numele proiectului din care face parte: <i class="glyphicon glyphicon-globe"></i> @Model.Subject.SubjectName
         <br />
         Status curs: <strong>@Model.Status</strong>
 
@@ -50,9 +50,9 @@
         {
 
 
-            <a class="btn btn-success pull-left" href="/Project/Show/@Model.ProjectId">Înapoi la proiect</a>
+            <a class="btn btn-success pull-left" href="/Subject/Show/@Model.SubjectId">Înapoi la proiect</a>
             <a class="btn btn-success pull-left" href="/Course/Edit/@Model.Id">Modifică curs</a>
-            <a class="btn btn-success pull-left" href="/ApartineT/New/@Model.Id">Assign curs</a>
+            <a class="btn btn-success pull-left" href="/ApartineT/New/@Model.Id">Adauga membru</a>
             <a class="btn btn-success pull-left" href="/ApartineT/Remove/@Model.Id">Elimină membrii</a>
 
 
@@ -70,7 +70,7 @@
                 <a class="btn btn-success pull-left" href="/Course/FinishCourse/@Model.Id">Finish Course</a>
             }
 
-            using (Html.BeginForm(actionName: "Delete", controllerName: "Task"))
+            using (Html.BeginForm(actionName: "Delete", controllerName: "Course"))
             {
                 @Html.Hidden("Id")
                 @Html.HttpMethodOverride(HttpVerbs.Delete)
@@ -123,7 +123,7 @@
 			</div>
 			<div class="col-md-8">
 				<div class="panel">
-					<form method="post" action="/Task/Show/@Model.Id">
+					<form method="post" action="/Course/Show/@Model.Id">
                         <div class="panel-body">
                             <input type="hidden" name="CourseId" value="@Model.Id" />
                             <label>Conținut comentariu</label>

@@ -12,10 +12,10 @@ namespace ProiectMDS.Models
     {
 
         [Key]
-        public int idTask { get; set; }
+        public int idCourse { get; set; }
 
         [Required]
-        public int TaskId { get; set; }
+        public int CourseId { get; set; }
 
 
         public string Email { get; set; }
@@ -29,7 +29,7 @@ namespace ProiectMDS.Models
 
         virtual public ICollection<ApplicationUser> Userz { get; set; }
 
-        public virtual Task task { get; set; }
+        public virtual Course course { get; set; }
         public virtual ApplicationUser user { get; set; }
     }
 

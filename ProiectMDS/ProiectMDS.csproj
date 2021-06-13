@@ -56,6 +56,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -163,37 +165,66 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Answer.cs">
+      <DependentUpon>Quizz.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Choice.cs">
+      <DependentUpon>Quizz.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApartineController.cs" />
     <Compile Include="Controllers\ApartineTController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\QuizzController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202105141635441_Initial.cs" />
-    <Compile Include="Migrations\202105141635441_Initial.designer.cs">
-      <DependentUpon>202105141635441_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202106131354581_Initial.cs" />
+    <Compile Include="Migrations\202106131354581_Initial.designer.cs">
+      <DependentUpon>202106131354581_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Apartine.cs" />
     <Compile Include="Models\ApartineT.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Course.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Project.cs" />
-    <Compile Include="Models\Task.cs" />
+    <Compile Include="Models\quizz.cs" />
+    <Compile Include="Models\Subject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Question.cs">
+      <DependentUpon>Quizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quiz.cs">
+      <DependentUpon>Quizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quizz.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quizz.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quizz.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quizz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quizz.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Quizz.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -210,8 +241,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Quizz.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Quizz.edmx</DependentUpon>
+      <LastGenOutput>Quizz.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Quizz.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Quizz.edmx</DependentUpon>
+      <LastGenOutput>Quizz.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Quizz.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Quizz.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Quizz.edmx.diagram">
+      <DependentUpon>Quizz.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\DatePicker.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -224,6 +272,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\background3.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -274,11 +323,8 @@
     <Content Include="Views\ApartineT\New.cshtml" />
     <Content Include="Views\Apartine\Remove.cshtml" />
     <Content Include="Views\ApartineT\Remove.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105141635441_Initial.resx">
-      <DependentUpon>202105141635441_Initial.cs</DependentUpon>
-    </EmbeddedResource>
+    <Content Include="Views\Quizz\QuizTest.cshtml" />
+    <Content Include="Views\Quizz\SelectQuizz.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -292,6 +338,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202106131354581_Initial.resx">
+      <DependentUpon>202106131354581_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

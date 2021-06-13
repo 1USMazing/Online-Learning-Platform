@@ -5,10 +5,10 @@
 
 <h2>@TempData["message"]</h2>
 
-@foreach (var project in ViewBag.Proiektzele)
+@foreach (var subject in ViewBag.Proiektzele)
 {
-    <p>@project.ProjectName</p>
-    <a class="btn btn-success butonash" href="/Subject/Show/@project.ProjectId">Afișare materie</a>
+    <p>@subject.SubjectName</p>
+    <a class="btn btn-success butonash" href="/Subject/Show/@subject.SubjectId">Afișare materie</a>
 
 
 

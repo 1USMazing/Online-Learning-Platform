@@ -11,11 +11,11 @@
 
 
 
-@using (Html.BeginForm(actionName: "Remove", controllerName: "Apartine", method: FormMethod.Post, routeValues: new { id = @Model.ProjectId }))
+@using (Html.BeginForm(actionName: "Remove", controllerName: "Apartine", method: FormMethod.Post, routeValues: new { id = @Model.SubjectId }))
 {
     @Html.HttpMethodOverride(HttpVerbs.Delete)
 
-<input type="hidden" name="ProjectId" value="@Model.ProjectId" />
+<input type="hidden" name="SubjectId" value="@Model.SubjectId" />
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"

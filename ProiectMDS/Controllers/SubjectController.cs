@@ -34,12 +34,12 @@ namespace ProiectMDS.Controllers
 
                 var subjects = from proj in db.Apartines
                                where proj.MembruId == proiecteleLui
-                               select proj.ProjectId;
+                               select proj.SubjectId;
 
                 var lengthproj = new List<int>(subjects);
 
-                var numeProiekte = from projj in db.Projects
-                                   where lengthproj.Contains(projj.ProjectId)
+                var numeProiekte = from projj in db.Subjects
+                                   where lengthproj.Contains(projj.SubjectId)
                                    select projj;
 
 
@@ -49,8 +49,8 @@ namespace ProiectMDS.Controllers
             }
             else
             {
-                var subjects = from subject in db.Projects
-                               orderby subject.ProjectName
+                var subjects = from subject in db.Subjects
+                               orderby subject.SubjectName
                                select subject;
                 ViewBag.Proiektzele = subjects;
 
@@ -60,15 +60,15 @@ namespace ProiectMDS.Controllers
 
         public ActionResult Show(int id)
         {
-            Project subject = db.Projects.Find(id);
+            Subject subject = db.Subjects.Find(id);
 
 
-            var owner = (from own in db.Projects
-                         where own.ProjectId == id
+            var owner = (from own in db.Subjects
+                         where own.SubjectId == id
                          select own.UserId).SingleOrDefault();
 
             var inSubject = from mem in db.Apartines
-                            where mem.ProjectId == id
+                            where mem.SubjectId == id
                             select mem.MembruId;
 
             var users = from user in db.Users
@@ -86,7 +86,7 @@ namespace ProiectMDS.Controllers
             ViewBag.owner = ownerr;
 
             var apartine = from apar in db.Apartines
-                           where apar.ProjectId == id
+                           where apar.SubjectId == id
                            select apar.MembruId;
             var ok = 0;
 
@@ -119,7 +119,7 @@ namespace ProiectMDS.Controllers
         }
 
         [HttpPost]
-		public ActionResult New(Project cat)
+		public ActionResult New(Subject cat)
 		{
 			try
 			{
@@ -134,9 +134,9 @@ namespace ProiectMDS.Controllers
                     UserManager.AddToRole(cat.UserId, "Organizator");
                 }
                 Apartine apartine = new Apartine();
-                apartine.ProjectId = cat.ProjectId;
+                apartine.SubjectId = cat.SubjectId;
                 apartine.MembruId = cat.UserId;
-                db.Projects.Add(cat);
+                db.Subjects.Add(cat);
                // db.SaveChanges();
                 db.Apartines.Add(apartine);
 				db.SaveChanges();
@@ -151,7 +151,7 @@ namespace ProiectMDS.Controllers
 
         public ActionResult Edit(int id)
         {
-            Project subject = db.Projects.Find(id);
+            Subject subject = db.Subjects.Find(id);
             ViewBag.Subject = subject;
 
 
@@ -168,14 +168,14 @@ namespace ProiectMDS.Controllers
 		}
 
 		[HttpPut]
-		public ActionResult Edit(int id, Project requestSubject)
+		public ActionResult Edit(int id, Subject requestSubject)
 		{
 			try
 			{
-				Project subject = db.Projects.Find(id);
+				Subject subject = db.Subjects.Find(id);
 				if (TryUpdateModel(subject))
 				{
-					subject.ProjectName = requestSubject.ProjectName;
+					subject.SubjectName = requestSubject.SubjectName;
 					db.SaveChanges();
 				}
 
@@ -190,16 +190,16 @@ namespace ProiectMDS.Controllers
 		[HttpDelete]
 		public ActionResult Delete(int id)
 		{
-            Project subject = db.Projects.Find(id);
+            Subject subject = db.Subjects.Find(id);
             if (subject.UserId == User.Identity.GetUserId() || User.IsInRole("Admin"))
             {
                 var deletedid = subject.UserId;
-                db.Projects.Remove(subject);
+                db.Subjects.Remove(subject);
                 db.SaveChanges();
 
-                var nrOfproj = from proj in db.Projects
+                var nrOfproj = from proj in db.Subjects
                                where proj.UserId == deletedid
-                               select proj.ProjectName;
+                               select proj.SubjectName;
 
 
                 var lengthproj = new List<string>(nrOfproj);

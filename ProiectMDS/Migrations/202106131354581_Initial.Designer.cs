@@ -13,7 +13,7 @@ namespace ProiectMDS.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202105141635441_Initial"; }
+            get { return "202106131354581_Initial"; }
         }
         
         string IMigrationMetadata.Source
