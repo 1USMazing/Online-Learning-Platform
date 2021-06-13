@@ -15,5 +15,3 @@ TODO:
 11. Impartirea cursurilor pe categorii;
 12. Roluri Administrator;
 13. Quiz-uri;
-14. Clasament punctaje obtinute in urma rezolvarii quiz-urilor;
-
