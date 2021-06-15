@@ -5,8 +5,8 @@ Proiect realizat pentru materia "Metode de dezvoltare software" din cadrul Facul
 ## Componența echipei:
 
 - [Andronie Iustinian](https://github.com/1USMazing)
-- [Dănănău Răzvan](https://github.com/DananauRazvan)
-- [Dobrescu Denis](https://github.com/dennis3009)
+- [Dănănău Ștefan-Răzvan](https://github.com/DananauRazvan)
+- [Dobrescu Dennis](https://github.com/dennis3009)
  
 [Rezolvarea cerințelor este vizibilă aici.](https://github.com/1USMazing/Online-Learning-Platform/wiki)
 
