@@ -8,16 +8,8 @@ Proiect realizat pentru materia "Metode de dezvoltare software" din cadrul Facul
 - [Dănănău Răzvan](https://github.com/DananauRazvan)
 - [Dobrescu Denis](https://github.com/dennis3009)
  
-[Backlog:](https://github.com/1USMazing/Online-Learning-Platform/wiki)
+[Rezolvarea cerințelor este vizibilă aici.](https://github.com/1USMazing/Online-Learning-Platform/wiki)
 
-1. Login/Logout;
-2. Tipuri Utilizatori;
-3. Roluri Instructori;
-4. Roluri Studenti;
-5. Lista Cursuri;
-6. Lista studentilor unui curs;
-7. Creare/Modificare Curs de catre instructor;
-8. Vizualizare informatii Curs;
-9. Creatorul cursului devine Instructor/Moderator;
-10. Roluri Administrator;
-11. Quiz-uri;
+## Descrierea Aplicației
+
+Proiectul este o aplicație web creată în Microsoft Visual Studio 2017, folosind frameworkul asp.net mvc, ce permite adăugarea unor materii dar și înrolarea în acestea. Utilizatorul ce a creat o materie, devine instructorul acesteia, având posibilitatea de a adăuga studenți, cursuri, deadline-uri. Studenții vor primi la sfârșit quizuri și pot, pe parcursul defășurării cursurilor, să lase întrebări/răspunsuri în secțiunea de comentarii. 
