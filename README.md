@@ -8,7 +8,7 @@ Proiect realizat pentru materia "Metode de dezvoltare software" din cadrul Facul
 - Dănănău Răzvan
 - Dobrescu Denis
  
-Backlog:
+[Backlog:](https://github.com/1USMazing/Online-Learning-Platform/wiki)
 
 1. Login/Logout;
 2. Tipuri Utilizatori;
